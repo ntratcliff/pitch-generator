@@ -1,0 +1,159 @@
+<html>
+	<head>
+		<title>The Indie Game Pitch Generator</title>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js" ></script>
+		<script src="//use.edgefonts.net/passion-one.js"></script>
+		<script type="text/javascript">
+			 $(document).on('ready', function(event){
+				generate();
+			 });
+			 
+			 var firstGenre,
+				secondGenre,
+				game;
+			 
+			function generate(){
+				$.get('firstgenres.txt', function(data){ 
+					var lines = data.split("\n");
+					var rand = Math.floor(Math.random() * lines.length);
+					$('#genre-1').text(lines[rand].replace("*","").toUpperCase());
+					if(lines[rand].indexOf("*") === -1){
+						$("#a").text("A");
+						firstGenre ="a+"+lines[rand].replace("*", "");
+					}
+					else{
+						$("#a").text("AN");
+						firstGenre ="an+"+lines[rand].replace("*", "");
+					}
+					$('#tweet-link').attr("href", "http://twitter.com/share?url=http://nratcliff.com/gen/&text=%22It%27s+like+"+game+"+but%2C+it%27s+"+firstGenre+"+"+secondGenre+"+game%2E%22");	
+				}, 'text');
+				
+				$.get('secondgenres.txt', function(data){ 
+					var lines = data.split("\n");
+					do{
+						var rand = Math.floor(Math.random() * lines.length);
+					}
+					while($('#genre-1').text() == lines[rand].toUpperCase());
+					secondGenre = lines[rand];
+					$('#genre-2').text(lines[rand].toUpperCase());
+					$('#tweet-link').attr("href", "http://twitter.com/share?url=http://nratcliff.com/gen/&text=%22It%27s+like+"+game+"+but%2C+it%27s+a+"+firstGenre+"+"+secondGenre+"+game%2E%22");	
+				}, 'text');
+				
+				$.get('games.txt', function(data){ 
+					var lines = data.split("\n");
+					var rand = Math.floor(Math.random() * lines.length);
+					game = lines[rand];
+					$('#inspiration-game').text(lines[rand].toUpperCase());
+					$('#tweet-link').attr("href", "http://twitter.com/share?url=http://nratcliff.com/gen/&text=%22It%27s+like+"+game+"+but%2C+it%27s+a+"+firstGenre+"+"+secondGenre+"+game%2E%22");	
+				}, 'text');
+			}
+		</script>
+		<style>
+		html{
+			font-family:passion-one, helvetica, sans-serif;
+			font-weight: bold;
+			font-size: 64px;
+			color:#fff;
+			background: #262626;
+			text-align:center;
+			width:100%;
+		}
+		
+		footer{
+			color:#565656;
+			font-size:16px;
+		}
+		
+		footer a{
+			color:#787878;
+		}
+		
+		footer a:visited{
+			color:#787878;
+		}
+
+		#title{
+			margin:0 auto 32;
+			font-size:94px;
+			max-width:1200px;
+		}
+		
+		#content{
+			margin: 0 auto;
+			text-align:center;
+		}
+		
+		#phrase{
+			margin: 0 auto 24 auto;
+			max-width: 640px;
+		}
+		
+		.generated-text{
+			color:#9c00b2
+		}
+		
+		.green-text{
+			color:#5bb200;
+		}
+		
+		#but-text{
+			font-size: 94px;
+		}
+		
+		#generate-button{
+			padding:10px 20px;
+			font-family: passion-one, helvetica, sans-serif;
+			font-size:48px;
+			color: #fff;
+			background-color:#9c00b2;
+			border: 5px solid #51005c;
+			margin-bottom:20px;
+		}
+		
+		#generate-button:hover{
+			border-color:#750084;
+			background-color:#B500CF;
+			
+		}
+		
+		#generate-button:focus{
+			outline:none;
+		}
+		
+		#tweet-link{
+			color:#fff;
+			background-color:#3b80b4;
+			border: 5px solid #2f6894;
+			padding:5px 10px;
+			text-decoration:none;
+			display: block;
+			width:196px;
+			font-size:24px;
+			margin:0 auto 10px;
+		}
+		
+		#tweet-link:hover{
+			background-color:#499bd8;
+			border-color:#428cc5;
+		}
+		
+		#tweet-link:focus{
+			outline:none;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div id="title">THE <span class="green-text">INDIE GAME</span> PITCH GENERATOR</div>
+			<div id="phrase">
+				IT'S LIKE <span id="inspiration-game" class="generated-text"></span><br/>
+				<span id="but-text" class="green-text">BUT</span><br/>
+				IT'S <span id="a">A</span> </span></span></span><span id="genre-1" class="generated-text"></span> <span id="genre-2" class="generated-text"></span> GAME
+			</div>
+			<a id="tweet-link" href="http://twitter.com/share?url=http://nratcliff.com/gen/&text=Test" target="_blank">TWEET THIS PITCH</a>
+			<input type="button" value="GENERATE" id="generate-button" onclick="generate();" />
+			
+		</div>
+	</body>
+	<footer>MADE BY <a href="https://twitter.com/fussycashew/" target="_blank">NOAH RATCLIFF</a></footer>
+</html>

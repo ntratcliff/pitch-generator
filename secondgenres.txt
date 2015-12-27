@@ -1,0 +1,18 @@
+adventure
+dating sim
+flight sim
+FPS
+JRPG
+MMO
+platformer
+puzzler
+racing
+rhythm
+roguelike
+RPG
+RTS
+stealth
+survival
+text adventure
+tower defence
+zombie

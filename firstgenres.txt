@@ -1,0 +1,23 @@
+*action
+*adventure
+beat 'em up
+casual
+fighting
+*FPS
+god
+hack and slash
+horror
+*MMO
+*open world
+platformer
+racing
+rhythm
+roguelike
+*RTS
+sports
+stealth
+survival
+text based
+tower defence
+turn based
+zombie
